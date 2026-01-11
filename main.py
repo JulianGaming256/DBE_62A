@@ -11,7 +11,7 @@ import io
 load_dotenv()
 app = FastAPI()
 # Connect to MongoDB Atlas
-client = motor.motor_asyncio.AsyncIOMotorClient("your_mongo_connection_string")
+client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv("MONGO_URI"))
 db = client.event_management_db
 # Data Models
 class Event(BaseModel):
