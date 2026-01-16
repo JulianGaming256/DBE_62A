@@ -7,8 +7,10 @@ from datetime import datetime
 from dotenv import load_dotenv
 import motor.motor_asyncio
 import io
+from bson import ObjectId
+
 # Load environment variables from .env file
-load_dotenv()
+load_dotenv(dotenv_path=".env")
 app = FastAPI()
 # Connect to MongoDB Atlas
 client = motor.motor_asyncio.AsyncIOMotorClient(os.getenv("MONGO_URI"))
