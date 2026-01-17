@@ -63,3 +63,39 @@ pip freeze > requirements.txt
 
 ---
 
+## Task 2
+
+### Schema Design
+
+The MongoDB database schema was designed using **MongoDB Atlas** and **MongoDB Compass**.
+
+The database, named `event_management_db`, contains the following collections:
+
+- **events** – Stores event details such as name, date, venue reference, and maximum attendees
+- **venues** – Stores venue information including name, address, and capacity
+- **attendees** – Stores attendee contact details
+- **bookings** – Stores ticket bookings linked to events and attendees
+- **event_posters** – Stores metadata and binary image data for event posters
+- **promo_videos** – Stores metadata and binary video data for promotional videos
+- **venue_photos** – Stores metadata and binary image data for venue photos
+
+Each multimedia document includes fields such as `filename`, `content_type`, `content`, and `uploaded_at`.
+
+Relationships between collections are maintained using referenced IDs (e.g. `event_id`, `venue_id`).
+
+### Schema Deployment
+
+The schema was deployed on **MongoDB Atlas** using a free-tier cluster.
+
+A database named `event_management_db` was created, and all required collections were manually added.
+
+Mock data was inserted into each collection to validate the schema design:
+
+- Sample events linked to venues
+- Sample attendees and bookings
+- Example metadata entries for posters, promotional videos, and venue photos
+
+The schema and data were visually verified using **MongoDB Atlas** and **MongoDB Compass**, with screenshots provided as evidence.
+
+---
+
