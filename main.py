@@ -7,7 +7,6 @@ from datetime import datetime
 from dotenv import load_dotenv
 import motor.motor_asyncio
 import io
-from bson import ObjectId
 
 # Load environment variables from .env file
 load_dotenv(dotenv_path=".env")
