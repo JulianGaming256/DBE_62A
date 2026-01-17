@@ -112,27 +112,27 @@ async def upload_event_poster(event_id: str, file: UploadFile = File(...)):
 async def upload_venue_photo(venue_id: str, file: UploadFile = File(...)):
     content = await file.read()  # Read the file content as bytes
     # Create document with file metadata and content
-    poster_doc = {
+    venue_photo_doc = {
         "venue_id": venue_id,
         "filename": file.filename,
         "content_type": file.content_type,
         "content": content,  # Store binary content in MongoDB
         "uploaded_at": datetime.utcnow()
     }
-    result = await db.venue_photos.insert_one(poster_doc)
+    result = await db.venue_photos.insert_one(venue_photo_doc)
     return {"message": "Venue photo uploaded", "id": str(result.inserted_id)} #Success message with photo ID
 
 # Upload Promo Video (Video)
-@app.post("/upload_promo_videos/{event_id}") #Upload a video file as promotional video which takes the id of the event and the uploaded video file
-async def upload_promo_videos(event_id: str, file: UploadFile = File(...)):
+@app.post("/upload_promo_video/{event_id}") #Upload a video file as promotional video which takes the id of the event and the uploaded video file
+async def upload_promo_video(event_id: str, file: UploadFile = File(...)):
     content = await file.read()  # Read the file content as bytes
     # Create document with file metadata and content
-    poster_doc = {
+    video_doc = {
         "event_id": event_id,
         "filename": file.filename,
         "content_type": file.content_type,
         "content": content,  # Store binary content in MongoDB
         "uploaded_at": datetime.utcnow()
     }
-    result = await db.promo_videos.insert_one(poster_doc)
+    result = await db.promo_video.insert_one(video_doc)
     return {"message": "Promo video uploaded", "id": str(result.inserted_id)} #Success message with video ID
