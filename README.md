@@ -99,3 +99,64 @@ The schema and data were visually verified using **MongoDB Atlas** and **MongoDB
 
 ---
 
+## Task 3
+
+### Running the API Locally
+
+Once the virtual environment and dependencies were installed, the API was started using:
+
+```bash
+uvicorn main:app --reload
+```
+
+The API is accessible at:
+
+```
+http://127.0.0.1:8000/docs
+```
+
+The **Swagger UI** was used to test and verify all endpoints.
+
+### API Endpoints
+
+#### Core Data Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/events` | Create a new event |
+| GET | `/events` | Retrieve all events |
+| POST | `/venues` | Create a venue |
+| GET | `/venues` | Retrieve all venues |
+| POST | `/attendees` | Create an attendee |
+| GET | `/attendees` | Retrieve all attendees |
+| POST | `/bookings` | Create a booking |
+| GET | `/bookings` | Retrieve all bookings |
+
+#### Multimedia Upload Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/upload_event_poster/{event_id}` | Upload an event poster image |
+| POST | `/upload_promo_videos/{event_id}` | Upload a promotional video |
+| POST | `/upload_venue_photo/{venue_id}` | Upload a venue photo |
+
+All multimedia endpoints accept `multipart/form-data` and store files directly in MongoDB as binary data.
+
+### Testing with Postman
+
+- File uploads were tested using `form-data`
+- JSON endpoints were tested using raw JSON
+- - All endpoints returned confirmation messages and MongoDB document IDs
+- Uploaded files were successfully stored and retrieved from MongoDB
+
+### Running the API on Vercel
+
+The FastAPI application was deployed to Vercel using a `vercel.json` configuration file.
+
+Example hosted endpoints:
+
+```
+GET  https://<your-vercel-app>.vercel.app/events
+POST https://<your-vercel-app>.vercel.app/upload_event_poster/{event_id}
+```
+
