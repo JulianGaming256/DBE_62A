@@ -160,3 +160,45 @@ GET  https://<your-vercel-app>.vercel.app/events
 POST https://<your-vercel-app>.vercel.app/upload_event_poster/{event_id}
 ```
 
+---
+
+## Task 4
+
+### Security Features
+
+#### a) Credential Security
+
+- A dedicated MongoDB database user was created with read/write permissions
+- The admin account was not used
+- The MongoDB connection string is stored securely in a `.env` file
+- Environment variables are loaded using `python-dotenv`
+
+#### b) IP Whitelisting
+
+- MongoDB Atlas Network Access was configured to allow connections only from trusted IP addresses
+- Deployment IPs (e.g. Vercel) and local development IPs were whitelisted
+
+#### c) NoSQL Injection Prevention
+
+- All request data is validated using **Pydantic models**
+- Strict typing ensures malformed or malicious data is rejected
+- The API does not execute raw user-defined database queries
+- Database operations are constructed programmatically
+
+Example validation model:
+
+```python
+class Booking(BaseModel):
+    event_id: str
+    attendee_id: str
+    ticket_type: str
+    quantity: int
+```
+
+---
+
+## Author
+
+**Student Name:** Your Name  
+**Unit:** ITMSD-506-2301 – Database Essentials  
+**Assignment:** A02 – Developing Secure and Effective Database Solutions
